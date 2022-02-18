@@ -64,9 +64,9 @@ def get_links(current_url, txt_fnd=''):
 def check_link(link, keywords):
     text = run_request(link)
     soup = bs4.BeautifulSoup(text, features='html.parser')
-    current_text = soup.find_all(class_='article-formatted-body article-formatted-body_version-1')
-    if len(current_text) == 0:
-        current_text = soup.find_all(class_='article-formatted-body article-formatted-body_version-2')
+
+    current_text = soup.find_all(class_='tm-article-body')
+
     words = []
     if not len(current_text) == 0:
         words = [word.lower() for word in (re.findall(r'\b(\w+)\b', current_text[0].text.strip()))]
